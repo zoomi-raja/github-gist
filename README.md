@@ -30,3 +30,6 @@ src
 └── index.js
 ```
 
+### testing 
+- command for running tests `yarn test`
+- command to check test converge `yarn test --coverage`
