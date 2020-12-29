@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import './App.css';
 import { Header } from './components/header/header';
@@ -6,21 +6,20 @@ import { Result } from './components/result/result';
 import { getByName, getPublicList } from './utilities/requests';
 
 let initState = {
-  cache: new Map(),
   results: [],
   loading:true,
 }
 function App() {
   const[search,setSearch]       = useState('');
   const[apiResult,setApiResult] = useState(initState);
+  const cache = useRef(new Map());
 
   useEffect(()=>{
     async function fetchData() {
       const response = await getPublicList();
       console.log(response)
-      // const userResp = await getByName({username:'levimm'})
       setApiResult(prev => {
-        prev.cache.set('',response.data)
+        cache.current.set('',response.data)
         return {
           ...prev,
           loading: false,
@@ -30,10 +29,41 @@ function App() {
     }
     fetchData();
   },[])
+
+  useEffect(()=>{
+    async function fetchData(search) {
+      if(cache.current.has(search)){
+        setApiResult(prev => {
+          return {
+            ...prev,
+            loading: false,
+            results: cache.current.get(search)
+          }
+        });
+      }else{
+        const response = await getByName({username:search})
+        console.log(response)
+        setApiResult(prev => {
+          cache.current.set(search,response.data)
+          return {
+            ...prev,
+            loading: false,
+            results: response.data?response.data:[]
+          }
+        });
+      }
+    }
+    
+    fetchData(search)
+  },[search,setApiResult])
+
+  const setSearchByName = useCallback((e)=>{
+    setSearch( e.target.value);
+  },[setSearch]);
   return (
     <div className="App">
       <div className='container'>
-        <Header />
+        <Header search={search} setSearch={setSearchByName}/>
         <Result {...apiResult}/>
       </div>
     </div>
