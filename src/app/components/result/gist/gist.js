@@ -1,4 +1,6 @@
 import { dateToYMD } from '../../../utilities/date';
+import PropTypes from 'prop-types';
+
 import './style.css';
 export function Gist({data}) {    
   return (
@@ -21,3 +23,6 @@ export function Gist({data}) {
     </div>
   )
 }
+Gist.propTypes = {
+  data: PropTypes.object
+};

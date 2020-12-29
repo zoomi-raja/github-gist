@@ -1,4 +1,6 @@
 import { memo } from "react";
+import PropTypes from 'prop-types';
+
 import './style.css';
 function header({search,setSearch}) {    
   return (
@@ -12,4 +14,8 @@ function header({search,setSearch}) {
     </div>
   )
 }
+header.propTypes = {
+  search: PropTypes.string,
+  setSearch: PropTypes.func
+};
 export const Header = memo(header);
