@@ -8,7 +8,7 @@ function header({search,setSearch}) {
       <input
        type='search'
        className='header__search' 
-       placeholder='Search By Name' 
+       placeholder='Search By Name..!' 
        value={search} 
        onChange={setSearch}/>
     </div>

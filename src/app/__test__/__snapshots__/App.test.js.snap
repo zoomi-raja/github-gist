@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app snapshot 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="header"
+    >
+      <input
+        className="header__search"
+        onChange={[Function]}
+        placeholder="Search By Name..!"
+        type="search"
+        value=""
+      />
+    </div>
+    <div
+      className="results"
+    >
+      <div
+        className="load"
+      >
+        <div
+          className="loader"
+        />
+      </div>
+      <div
+        className="no-record"
+      >
+        <span>
+          No Result Found
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

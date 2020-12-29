@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gist empty description snapshot 1`] = `
+<div
+  className="gist"
+>
+  <div
+    className="gist__user"
+  >
+    <div
+      className="user__avatar"
+    >
+      <img
+        alt="git user"
+        src="https://avatars2.githubusercontent.com/u/37789057?v=4"
+      />
+    </div>
+    <div
+      className="user__info"
+    >
+      <a
+        className="user__name"
+        href="https://github.com/Untrusted-Game"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <span
+          className="user__name--limit"
+        >
+          Untrusted-Game
+        </span>
+        <span>
+          →
+        </span>
+      </a>
+      <span>
+        2020-12-29
+      </span>
+    </div>
+  </div>
+  <div
+    className="gist__desc"
+  >
+    <a
+      href="https://gist.github.com/bf2876a3c3bd668b3596a38ef4480678"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      No Discription Available
+    </a>
+  </div>
+</div>
+`;
+
+exports[`gist snapshot 1`] = `
+<div
+  className="gist"
+>
+  <div
+    className="gist__user"
+  >
+    <div
+      className="user__avatar"
+    >
+      <img
+        alt="git user"
+        src="https://avatars2.githubusercontent.com/u/37789057?v=4"
+      />
+    </div>
+    <div
+      className="user__info"
+    >
+      <a
+        className="user__name"
+        href="https://github.com/Untrusted-Game"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <span
+          className="user__name--limit"
+        >
+          Untrusted-Game
+        </span>
+        <span>
+          →
+        </span>
+      </a>
+      <span>
+        2020-12-29
+      </span>
+    </div>
+  </div>
+  <div
+    className="gist__desc"
+  >
+    <a
+      href="https://gist.github.com/bf2876a3c3bd668b3596a38ef4480678"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Solution to level 3 in Untrusted: http://alex.nisnevich.com/untrusted/
+    </a>
+  </div>
+</div>
+`;

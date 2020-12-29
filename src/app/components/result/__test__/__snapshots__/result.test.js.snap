@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`results snapshot 1`] = `
+<div
+  className="results"
+>
+  <div
+    className="load"
+  >
+    <div
+      className="loader"
+    />
+  </div>
+  <div
+    className="gist"
+  >
+    <div
+      className="gist__user"
+    >
+      <div
+        className="user__avatar"
+      >
+        <img
+          alt="git user"
+          src="https://avatars2.githubusercontent.com/u/37789057?v=4"
+        />
+      </div>
+      <div
+        className="user__info"
+      >
+        <a
+          className="user__name"
+          href="https://github.com/Untrusted-Game"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span
+            className="user__name--limit"
+          >
+            Untrusted-Game
+          </span>
+          <span>
+            →
+          </span>
+        </a>
+        <span>
+          2020-12-29
+        </span>
+      </div>
+    </div>
+    <div
+      className="gist__desc"
+    >
+      <a
+        href="https://gist.github.com/bf2876a3c3bd668b3596a38ef4480678"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Solution to level 3 in Untrusted: http://alex.nisnevich.com/untrusted/
+      </a>
+    </div>
+  </div>
+  <div
+    className="gist"
+  >
+    <div
+      className="gist__user"
+    >
+      <div
+        className="user__avatar"
+      >
+        <img
+          alt="git user"
+          src="https://avatars3.githubusercontent.com/u/24355147?v=4"
+        />
+      </div>
+      <div
+        className="user__info"
+      >
+        <a
+          className="user__name"
+          href="https://github.com/xlplugins"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span
+            className="user__name--limit"
+          >
+            xlplugins
+          </span>
+          <span>
+            →
+          </span>
+        </a>
+        <span>
+          2020-12-29
+        </span>
+      </div>
+    </div>
+    <div
+      className="gist__desc"
+    >
+      <a
+        href="https://gist.github.com/b8637cc0a21880c39300fa8ad3454677"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Show Equivalent checkout page in funnel builder 
+      </a>
+    </div>
+  </div>
+  <div
+    className="gist"
+  >
+    <div
+      className="gist__user"
+    >
+      <div
+        className="user__avatar"
+      >
+        <img
+          alt="git user"
+          src="https://avatars3.githubusercontent.com/u/11540552?v=4"
+        />
+      </div>
+      <div
+        className="user__info"
+      >
+        <a
+          className="user__name"
+          href="https://github.com/adzsroka"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span
+            className="user__name--limit"
+          >
+            adzsroka
+          </span>
+          <span>
+            →
+          </span>
+        </a>
+        <span>
+          2020-12-29
+        </span>
+      </div>
+    </div>
+    <div
+      className="gist__desc"
+    >
+      <a
+        href="https://gist.github.com/e129e4d8698e9b8b6b2a9ddb94229528"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Modifications to the train_model.py to serialise
+      </a>
+    </div>
+  </div>
+</div>
+`;
