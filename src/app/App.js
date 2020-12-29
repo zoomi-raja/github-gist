@@ -33,7 +33,14 @@ function App() {
           }
         });
       }catch(e){
-        console.log(e)
+        alert(e)
+        setApiResult(prev => {
+          return {
+            ...prev,
+            loading: false,
+            results: []
+          }
+        });
       }
     }
     fetchData();
@@ -62,7 +69,14 @@ function App() {
           }
         });
       }catch(e){
-        console.log(e)
+        alert(e)
+        setApiResult(prev => {
+          return {
+            ...prev,
+            loading: false,
+            results: []
+          }
+        });
       }
     }
   }
