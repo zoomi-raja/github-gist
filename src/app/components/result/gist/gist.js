@@ -1,22 +1,22 @@
 import { dateToYMD } from '../../../utilities/date';
 import './style.css';
-export function Gist() {    
+export function Gist({data}) {    
   return (
     <div className='gist'>
       <div className='gist__user'>
         <div className='user__avatar'>
-          <img src='https://avatars1.githubusercontent.com/u/48676961?v=4' alt="git user"/>
+          <img src={data.owner.avatar_url} alt="git user"/>
         </div>
         <div className='user__info'>
-          <a className='user__name' href='https://' target="_blank" rel="noopener noreferrer">
-            <span>zoomi</span>
+          <a className='user__name' href={data.owner.html_url} target="_blank" rel="noopener noreferrer">
+            <span className='user__name--limit' >{data.owner.login}</span>
             <span>&rarr;</span>
           </a>
-          <span>{dateToYMD(new Date('2020-12-29T09:56:36Z'))}</span>
+          <span>{dateToYMD(new Date(data.created_at))}</span>
         </div>
 			</div>
       <div className='gist__desc'>
-        <a href='https://gist.github.com/ff66629bf211eef1c59d517c9754f51b'>html_url description description</a>
+        <a href={data.html_url} target="_blank" rel="noopener noreferrer">{data.description?data.description:'No Discription Available'}</a>
       </div>
     </div>
   )
