@@ -1,0 +1,8 @@
+.header{
+  display: flex;
+  justify-content: center;
+}
+.header__search{
+  width: 50%;
+  padding: 1.2rem;
+}

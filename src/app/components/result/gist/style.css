@@ -1,0 +1,31 @@
+.gist{
+  background-color: bisque;
+  flex-basis: 30%;
+  padding: 2rem;
+  margin-right: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.gist__user{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+.user__avatar{
+  flex-shrink: 0;
+  width: 20%;
+  height: 20%;
+  margin-right: 1.2rem;
+}
+.user__avatar img{
+  border-radius: 50%;
+}
+
+.user__info{
+  display: flex;
+  flex-direction: column;
+}
+.gist__desc{
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 1.2rem;
+}

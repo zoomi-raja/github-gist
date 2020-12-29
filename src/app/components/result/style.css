@@ -1,0 +1,7 @@
+.results{
+  font-size: 1.6rem;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  color: black;
+}
