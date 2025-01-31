@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import "./App.css";
@@ -13,102 +13,86 @@ let initState = {
 };
 /** refrence for our local cache remember it will not persist on refresh*/
 const cache = new Map();
+const resultReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_RESULTS":
+      return {
+        ...state,
+        results: action.payload ?? [],
+        loading: false,
+      };
+    case "SET_LOADING":
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 function App() {
   /**state management we could have used redux but overkill for current scenario useReducer hook can also
    * be good substitute
    */
   const [search, setSearch] = useState("");
-  const [apiResult, setApiResult] = useState(initState);
+  const [apiResult, setApiResultDispatch] = useReducer(
+    resultReducer,
+    initState
+  );
 
   // this effect will run only once to initiate all results and set first empty string cache results too
   useEffect(() => {
     async function fetchData() {
+      setApiResultDispatch({ type: "SET_LOADING", payload: true });
       try {
         const response = await getPublicList();
-        setApiResult((prev) => {
-          cache.set("", response.data);
-          return {
-            ...prev,
-            loading: false,
-            results: response.data ? response.data : [],
-          };
-        });
+        cache.set("", response.data);
+        setApiResultDispatch({ type: "SET_RESULTS", payload: response.data });
       } catch (e) {
-        setApiResult((prev) => {
-          return {
-            ...prev,
-            loading: false,
-            results: [],
-          };
-        });
+        setApiResultDispatch({ type: "SET_RESULTS", payload: [] });
       }
     }
     fetchData();
   }, []);
 
   /**Helpre function to set search result */
-  const setSearchResults = async (value) => {
+  const searchResult = async (value, signal) => {
     if (cache.has(value)) {
-      setApiResult((prev) => {
-        return {
-          ...prev,
-          loading: false,
-          results: cache.get(value),
-        };
-      });
+      setApiResultDispatch({ type: "SET_RESULTS", payload: cache.get(value) });
     } else {
       try {
-        if (!value) return;
-        const response = await getByName({ username: value });
-        setApiResult((prev) => {
-          cache.set(value, response.data);
-          return {
-            ...prev,
-            loading: false,
-            results: response.data ? response.data : [],
-          };
-        });
+        if (value.length < 3) return;
+        setApiResultDispatch({ type: "SET_LOADING", payload: true });
+        const response = await getByName({ username: value, signal });
+        cache.set(value, response.data);
+        setApiResultDispatch({ type: "SET_RESULTS", payload: response.data });
       } catch (e) {
         alert(e);
-        setApiResult((prev) => {
-          return {
-            ...prev,
-            loading: false,
-            results: [],
-          };
-        });
+        setApiResultDispatch({ type: "SET_RESULTS", payload: [] });
       }
     }
   };
-  /** debounce function is used to limit the rate of api hits and useRef to keep the refrence of method
-   * instead of initiating everytime
+  /** useCallback is used to keep the refrence of method instead of initiating everytime
    */
-  const delayedQuery = useRef(
-    debounce(async (value) => await setSearchResults(value), 250)
-  );
+  const debouncedSearchResult = useCallback(debounce(searchResult, 250), []);
 
-  /** useCallback is used to get benifit of memo in header component becuase other then permitive
-   * types memo will always have new method
+  /**
+   * monitor the search input and debounce it
+   * this will help to limit the rate of api hits
    */
-  const setSearchByName = useCallback(
-    (e) => {
-      setSearch(e.target.value);
-      setApiResult((prv) => {
-        return {
-          ...prv,
-          loading: true,
-        };
-      });
-      delayedQuery.current(e.target.value);
-      //call debounced function
-    },
-    [setSearch, delayedQuery]
-  );
-
+  useEffect(() => {
+    const abortController = new AbortController();
+    // get new results if search string length > 3
+    debouncedSearchResult(search, abortController.signal);
+    // abort on unmount
+    return () => {
+      abortController.abort();
+    };
+  }, [search]);
   return (
     <div className="App">
       <div className="container">
-        <Header search={search} setSearch={setSearchByName} />
+        <Header search={search} setSearch={setSearch} />
         <Result {...apiResult} />
       </div>
     </div>
