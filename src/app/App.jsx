@@ -11,9 +11,9 @@ let initState = {
   results: [],
   loading: true,
 };
+/** refrence for our local cache remember it will not persist on refresh*/
+const cache = new Map();
 function App() {
-  /** refrence for our local cache */
-  const cache = useRef(new Map());
   /**state management we could have used redux but overkill for current scenario useReducer hook can also
    * be good substitute
    */
@@ -26,7 +26,7 @@ function App() {
       try {
         const response = await getPublicList();
         setApiResult((prev) => {
-          cache.current.set("", response.data);
+          cache.set("", response.data);
           return {
             ...prev,
             loading: false,
@@ -34,7 +34,6 @@ function App() {
           };
         });
       } catch (e) {
-        alert(e);
         setApiResult((prev) => {
           return {
             ...prev,
@@ -49,12 +48,12 @@ function App() {
 
   /**Helpre function to set search result */
   const setSearchResults = async (value) => {
-    if (cache.current.has(value)) {
+    if (cache.has(value)) {
       setApiResult((prev) => {
         return {
           ...prev,
           loading: false,
-          results: cache.current.get(value),
+          results: cache.get(value),
         };
       });
     } else {
@@ -62,7 +61,7 @@ function App() {
         if (!value) return;
         const response = await getByName({ username: value });
         setApiResult((prev) => {
-          cache.current.set(value, response.data);
+          cache.set(value, response.data);
           return {
             ...prev,
             loading: false,
@@ -101,6 +100,7 @@ function App() {
         };
       });
       delayedQuery.current(e.target.value);
+      //call debounced function
     },
     [setSearch, delayedQuery]
   );

@@ -1,18 +1,16 @@
-.gist{
+.gist {
   background-color: bisque;
   flex-basis: 30%;
   padding: 2rem;
-  margin-right: 1.2rem;
-  margin-bottom: 1.2rem;
   flex-grow: 0;
   overflow: hidden;
 }
-.gist__user{
+.gist__user {
   display: flex;
   align-items: center;
   margin-bottom: 1.2rem;
 }
-.user__name--limit{
+.user__name--limit {
   display: inline-block;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -20,28 +18,30 @@
   overflow: hidden;
   vertical-align: middle;
 }
-.user__avatar{
+.user__avatar {
   flex-shrink: 0;
   width: 20%;
   height: 20%;
   margin-right: 1.2rem;
 }
-.user__avatar img{
+.user__avatar img {
   border-radius: 50%;
 }
 
-.user__info{
+.user__info {
   display: flex;
   flex-direction: column;
 }
-.gist__desc{
+.gist__desc {
   background-color: #fff;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   border-radius: 3px;
   padding: 1.2rem;
+  max-height: 8rem;
 }
 @media (max-width: 700px) {
-  .gist{
+  .gist {
     flex-basis: 100%;
   }
 }
